@@ -1,0 +1,29 @@
+.sider_bar_item {
+    padding: 16px;
+    border-radius: 8px;
+    width: 100%;
+    background-color: #f5f2f2;
+}
+
+.bar_item_h3 {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.bar_item_list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.item_list_item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.isDouble {
+    width: 50%;
+    cursor: pointer;
+}

@@ -1,0 +1,21 @@
+.user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px;
+}
+.user_img {
+    display: block;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+}
+.user_content {
+    display: flex;
+    flex-direction: column;
+}
+
+.fweight {
+    font-weight: 900;
+}

@@ -1,0 +1,20 @@
+.relate_item {
+    display: flex;
+    // flex-wrap: wrap;
+}
+.relate_image {
+    width: 50px;
+    height: 50px;
+    margin-right: 4px;
+}
+
+.relate_image img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.relate_price {
+    color: #16c784;
+}

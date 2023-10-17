@@ -1,0 +1,20 @@
+#navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #33bbc5;
+}
+.navigation--content {
+    max-width: 1200px;
+}
+
+.navigation-item {
+    display: inline-block;
+    padding: 12px 18px;
+    transition: all 0.125s linear;
+    color: #fff;
+}
+
+.navigation-item.active {
+    background-color: #ef6262;
+}

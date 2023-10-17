@@ -1,0 +1,15 @@
+.search {
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    background-color: #febb02;
+    padding: 8px 16px;
+    border-radius: 8px;
+    // gap: 8px;
+}
+
+.search_container_item {
+    width: 20%;
+    padding: 4px 8px;
+}

@@ -1,0 +1,32 @@
+/* Pagination.scss */
+.pagination {
+    display: flex;
+    list-style: none;
+    margin-top: 18px;
+    justify-content: center;
+}
+
+.pagination li {
+    margin: 0 5px;
+    background-color: #e7e4e4;
+    border-radius: 5px;
+}
+
+.pagination li a {
+    cursor: pointer;
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // padding: 8px;
+    font-weight: bold;
+}
+
+.pagination li.active {
+    background-color: #ef6262;
+    & a {
+        color: #fff;
+    }
+}
