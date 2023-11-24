@@ -10,10 +10,7 @@ const sequelize = new Sequelize('motel', 'root', '123456', {
 async function connect() {
     try {
         await sequelize.authenticate();
-        console.log('Connection suss');
-    } catch (error) {
-        console.error('connect fall');
-    }
+    } catch (error) {}
 }
 
 module.exports = { connect };

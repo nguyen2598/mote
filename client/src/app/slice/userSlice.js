@@ -3,7 +3,6 @@ import user from '../../services/user';
 export const getCurrent = createAsyncThunk('post/getCurrent', async () => {
     try {
         const response = await user.getApiCurrent();
-        console.log('res', response);
         if (response?.data?.err === 0) {
             return response?.data;
         } else {
@@ -29,16 +28,15 @@ const userSlice = createSlice({
                 // state.isLoggedIn = false;
             })
             .addCase(getCurrent.fulfilled, (state, action) => {
-                console.log('accc', action.payload);
                 if (action.payload?.err === 0) {
                     state.currentData = action.payload.response || [];
                     // state.msg = action.payload?.msg || '';
                 } else {
-                    state.msg = action.payload?.msg;
+                    state.currentData = null;
                 }
             })
             .addCase(getCurrent.rejected, (state, action) => {
-                state.posts = null;
+                state.currentData = null;
             });
     },
 });

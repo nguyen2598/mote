@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useSearchParams } from 'react-router-dom';
+import { getPostsLimit } from '../../../app/slice/postSlice';
+import { ListItem } from '../../../components';
 import icons from '../../../ultils/icon';
 import './List.scss';
-import { ListItem } from '../../../components';
-import { useDispatch, useSelector } from 'react-redux';
-import { getPosts, getPostsLimit } from '../../../app/slice/postSlice';
-import Pagination from '../Pagination/Pagination';
 const { IcHeartFul, IcHeart } = icons;
 // import {}
 export default function List({ categoryCode }) {
     const dispatch = useDispatch();
     const { posts, count } = useSelector((state) => state.post);
     const [searchParams] = useSearchParams();
+    console.log({ posts });
     useEffect(() => {
         // let page = searchParams.get('page') || 1;
         // let priceCode = searchParams.get('priceCode');
@@ -28,7 +28,6 @@ export default function List({ categoryCode }) {
             }
         });
         if (categoryCode) search.categoryCode = categoryCode;
-        console.log('ws', search);
         dispatch(getPostsLimit({ ...search }));
     }, [searchParams, categoryCode]);
     useEffect(() => {
@@ -37,15 +36,15 @@ export default function List({ categoryCode }) {
     return (
         <div className="list">
             <div className="list_header">
-                <h4>Danh sách tin đăng</h4>
-                <span>Cập nhật: </span>
+                <h4 className="list_header_title">Danh sách tin đăng</h4>
+                <span className="list_header_count">Tổng {count} kết quả </span>
             </div>
-            <div className="list_navigate">
+            {/* <div className="list_navigate">
                 <span>Sắp xếp</span>
                 <NavLink to="?orderby=moi-nhat">moi nhat</NavLink>
                 <NavLink to="?orderby=mac-dinh">mac dinh</NavLink>
                 <NavLink to="?orderby=co-video">co video</NavLink>
-            </div>
+            </div> */}
             <div className="list_content">
                 {posts?.map((item, index) => (
                     <ListItem
@@ -63,6 +62,7 @@ export default function List({ categoryCode }) {
                         avt={item?.user?.avatar}
                         author={item?.user?.name}
                         id={item?.id}
+                        createdAt={item?.createdAt}
                     />
                 ))}
             </div>

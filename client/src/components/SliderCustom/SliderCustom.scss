@@ -1,0 +1,25 @@
+.tad_index {
+    background-color: #000;
+    display: flex !important;
+    justify-content: center;
+}
+
+// .slick-dots {
+//     bottom: 10px;
+//     & li button:before {
+//         color: #fff;
+//     }
+// }
+
+button.slick-arrow::before {
+    color: #fff !important;
+    font-size: 32px;
+}
+
+.slick-next {
+    right: 32px;
+}
+.slick-prev {
+    left: 32px;
+    z-index: 1;
+}

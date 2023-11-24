@@ -1,0 +1,20 @@
+.go_to_top {
+    position: fixed;
+    z-index: 998;
+    bottom: 120px;
+    right: 25px;
+    width: 58px;
+    height: 58px;
+
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #f83859;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+
+    box-shadow: rgba(0, 0, 0, 0.2) 0 2px 10px 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}

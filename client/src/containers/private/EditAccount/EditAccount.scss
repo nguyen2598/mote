@@ -1,0 +1,73 @@
+.edit_acc {
+    padding-right: 20px;
+    & .edit_acc_heading {
+        font-size: 21px;
+        margin-bottom: 20px;
+    }
+}
+.edit_acc_form {
+    display: flex;
+    flex-direction: column;
+}
+.edit_acc_group {
+    display: flex;
+    // flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    & label {
+        margin: 0;
+        width: 120px;
+    }
+    & .small {
+        cursor: pointer;
+        color: blue;
+        font-size: 12px;
+        margin-top: 4px;
+    }
+}
+.input_div {
+    flex: 1;
+    & input {
+        width: 100%;
+        font-size: 18px;
+        padding: 8px 16px;
+    }
+    display: flex;
+    flex-direction: column;
+}
+
+.edit_acc_btn {
+    border: 1px solid #ccc;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #fff;
+    background-color: rgb(75, 75, 250);
+    transition: all 0.25s linear;
+    &:hover {
+        transform: scale(0.98);
+    }
+}
+label.edit_avt_file {
+    display: block;
+    position: relative;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+
+.FaCamera {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0.4;
+    &:hover {
+        opacity: 0.7;
+    }
+}

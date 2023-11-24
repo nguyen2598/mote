@@ -1,0 +1,56 @@
+.contact {
+    max-width: 1200px;
+    margin: auto;
+    width: 100%;
+    border: 7px dashed #e8eefc;
+    padding: 30px;
+    margin-top: 30px;
+    border-radius: 8px;
+    background-color: #fff;
+    .contact_content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        & img {
+            height: 150px;
+            object-fit: contain;
+            object-position: center;
+        }
+
+        & .list-support-title {
+            text-align: center;
+            padding: 0 10px;
+            margin-top: 30px;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #233762;
+        }
+
+        .contact_infor {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            & .contact_infor_item {
+                width: 25%;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                & span {
+                    display: block;
+                    text-align: center;
+                    color: #233762;
+                    font-size: 1.3rem;
+                    font-weight: 700;
+                    margin: 5px 0;
+                }
+                & .co_red {
+                    font-weight: 700;
+                    display: block;
+                    margin-bottom: 10px;
+                    color: #f60;
+                    text-transform: uppercase;
+                }
+            }
+        }
+    }
+}

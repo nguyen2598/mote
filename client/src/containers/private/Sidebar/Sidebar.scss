@@ -1,0 +1,28 @@
+.sider_bar {
+}
+.sider_bar_header {
+}
+.sider_bar_profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    & img {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 2px solid #ccc;
+    }
+    & div {
+        display: flex;
+        flex-direction: column;
+    }
+}
+.sider_bar_content {
+}
+.item_modal_item {
+}
+
+.item_modal_item.active {
+    background-color: beige;
+}

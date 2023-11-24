@@ -88,11 +88,19 @@ export default function ModalSearch({ setIsShowModal, content, name, handleSubmi
             {
                 [`${name}Number`]: [
                     convert100ToTarget(+persent1 < +persent2 ? +persent1 : +persent2),
-                    convert100ToTarget(+persent1 > +persent2 ? +persent1 : +persent2),
+                    +persent1 !== 100 && +persent2 !== 100
+                        ? convert100ToTarget(+persent1 > +persent2 ? +persent1 : +persent2)
+                        : 9999999999,
                 ],
-                [name]: `Từ ${convert100ToTarget(+persent1 < +persent2 ? +persent1 : +persent2)} - ${convert100ToTarget(
-                    +persent1 > +persent2 ? +persent1 : +persent2,
-                )}`,
+                [name]:
+                    +persent1 !== +persent2 && persent1 !== 100
+                        ? `
+                        Từ 
+                        ${convert100ToTarget(+persent1 < +persent2 ? +persent1 : +persent2)} 
+                        - 
+                        ${convert100ToTarget(+persent1 > +persent2 ? +persent1 : +persent2)}
+                        `
+                        : `Trên ${convert100ToTarget(+persent1)} `,
             },
             {
                 [`${name}Arr`]: [

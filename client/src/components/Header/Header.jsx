@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './Header.scss';
+
 import logo from '../../assests/logo.svg';
 import { path } from '../../ultils/path';
 import icons from '../../ultils/icon';
@@ -9,6 +9,7 @@ import { logout } from '../../app/slice/authSlice';
 import { getLogout } from '../../app/slice/userSlice';
 import menuManage from '../../ultils/menuManage';
 import User from '../User/User';
+import './Header.scss';
 const { IcPlus, IcUserPlus, BiLogOut, AiFillCaretDown } = icons;
 export default function Header() {
     const [isShowmenu, setIsShowmenu] = useState(false);
@@ -67,10 +68,12 @@ export default function Header() {
                             </div>
                         )}
                     </>
-                    <button className="header-create">
-                        Đăng bài
-                        <IcPlus />
-                    </button>
+                    <Link to="/he-thong/tao-moi-tin-dang">
+                        <button className="header-create">
+                            Đăng bài
+                            <IcPlus />
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>

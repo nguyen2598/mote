@@ -1,11 +1,23 @@
 import React from 'react';
-
-export default function SelectAddress({ label }) {
+import './SelectAddress.scss';
+export default function SelectAddress({ label, options, value, setValue }) {
     return (
-        <div>
+        <div className="select_add">
             <label htmlFor="select-address">{label}</label>
-            <select name="" id="select-address">
-                <option value="">-- Chon tinh/TP --</option>
+            <select
+                name=""
+                id="select-address"
+                value={value}
+                onChange={(e) => {
+                    setValue(e.target.value);
+                }}
+            >
+                <option value="">{`-- Chon ${label?.toLowerCase()} --`}</option>
+                {options?.map((item, index) => (
+                    <option key={index} value={item?.name || item?.code}>
+                        {item?.name || item?.value}
+                    </option>
+                ))}
             </select>
         </div>
     );

@@ -1,5 +1,5 @@
 const db = require('./models');
-// const bcrypt = require('bcryptjs');
+const argon2 = require('argon2');
 const { v4 } = require('uuid');
 const chothuematbang = require('../data/chothuematbang.json');
 const chothuecanho = require('../data/chothuecanho.json');
@@ -27,8 +27,7 @@ const dataBody = [
         code: 'NCT',
     },
 ];
-
-const hashPassword = (password) => 123456;
+let im = 0;
 const insertService = (req, res) =>
     new Promise(async (resolve, reject) => {
         try {
@@ -87,24 +86,25 @@ const insertService = (req, res) =>
                     });
                     await db.Overview.create({
                         id: overviewId,
-                        code: item?.overview?.content.find((i) => i.name === 'Mã tin:')?.content,
-                        area: item?.overview?.content.find((i) => i.name === 'Khu vực')?.content,
-                        type: item?.overview?.content.find((i) => i.name === 'Loại tin rao:')?.content,
-                        target: item?.overview?.content.find((i) => i.name === 'Đối tượng thuê:')?.content,
-                        bonus: item?.overview?.content.find((i) => i.name === 'Gói tin:')?.content,
-                        // created: item?.overview?.content.find((i) => i.name === 'Ngày đăng:')?.content,
-                        expired: item?.overview?.content.find((i) => i.name === 'Ngày hết hạn:')?.content,
+                        code: item?.overview?.content.find((i) => i?.name === 'Mã tin:')?.content,
+                        area: item?.overview?.content.find((i) => i?.name === 'Khu vực')?.content,
+                        type: item?.overview?.content.find((i) => i?.name === 'Loại tin rao:')?.content,
+                        target: item?.overview?.content.find((i) => i?.name === 'Đối tượng thuê:')?.content,
+                        bonus: item?.overview?.content.find((i) => i?.name === 'Gói tin:')?.content,
+                        // created: item?.overview?.content.find((i) => i?.name === 'Ngày đăng:')?.content,
+                        expired: item?.overview?.content.find((i) => i?.name === 'Ngày hết hạn:')?.content,
                     });
                     await db.User.create({
                         id: userId,
-                        name: item?.contact?.content.find((i) => i.name === 'Liên hệ:')?.content,
-                        password: hashPassword('123456'),
-                        phone: item?.contact?.content.find((i) => i.name === 'Điện thoại:')?.content,
-                        zalo: item?.contact?.content.find((i) => i.name === 'Zalo')?.content,
+                        name: item?.contact?.content.find((i) => i?.name === 'Liên hệ:')?.content,
+                        password: await argon2.hash('123456'),
+                        phone: item?.contact?.content.find((i) => i?.name === 'Điện thoại:')?.content,
+                        zalo: item?.contact?.content.find((i) => i?.name === 'Zalo')?.content,
+                        fbUrl: item?.contact?.content.find((i) => i?.name === 'Facebook')?.content,
                     });
+                    console.log(im++);
                 });
             });
-            // console.log(provinceCodes);
             provinceCodes?.forEach(async (item) => {
                 await db.Province.create(item);
             });
@@ -117,6 +117,7 @@ const insertService = (req, res) =>
             return res.json('that bai');
         }
     });
+let inm = 0;
 const createPricesAndAreas = (req, res) =>
     new Promise((resolve, reject) => {
         try {
@@ -134,7 +135,7 @@ const createPricesAndAreas = (req, res) =>
                     order: index + 1,
                 });
             });
-            return res.json({ name: 'Quynh ', dataArea: 'dataArea', class: 'mo' });
+            return res.json('them thanh cong chia chi,gía cả');
         } catch (error) {
             return res.json('that bai');
         }

@@ -1,9 +1,19 @@
 .list {
     width: 100%;
+    & .list_header_count {
+        margin-bottom: 15px;
+    }
 }
-.list_header h4 {
-    font-size: 18px;
+
+.list_header {
+    padding: 20px;
 }
+
+.list_header_title {
+    font-size: 21px;
+    margin-bottom: 15px;
+}
+
 .list_navigate {
     display: flex;
     align-items: center;

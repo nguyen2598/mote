@@ -17,7 +17,6 @@ export default function RentalApartment() {
             setCategoryCode(category.code);
         }
     }, [location, categories]);
-    console.log('first', categoryCode);
     return (
         <div className="rental_apartment">
             <Search />

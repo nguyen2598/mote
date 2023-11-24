@@ -1,0 +1,30 @@
+label {
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 12px;
+}
+
+.only_button {
+    & .only_button_inp {
+        & input {
+            flex: 1;
+        }
+        display: flex;
+        & span {
+            background-color: #0095f6;
+            padding: 4px 8px;
+            color: #fff;
+            pointer-events: none;
+            user-select: none;
+            font-size: 12px;
+            & sup {
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+textarea {
+    border: 1px solid #ccc;
+    outline: none;
+}

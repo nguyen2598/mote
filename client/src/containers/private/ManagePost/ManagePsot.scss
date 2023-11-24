@@ -1,0 +1,29 @@
+.manage_post {
+    position: relative;
+}
+tr {
+    border-bottom: 1px solid #ccc;
+}
+.td_center {
+    text-align: center;
+    vertical-align: middle;
+}
+.table {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 8px 4px;
+    border-radius: 8px;
+}
+.manage_post_header {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 40px;
+}
+
+.manage_post_search {
+    border: 1px solid #ccc;
+    padding: 4px 8px;
+    border-radius: 12px;
+    background-color: #fff;
+}

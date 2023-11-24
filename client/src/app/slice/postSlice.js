@@ -39,6 +39,19 @@ export const getNewPosts = createAsyncThunk('post/getNewPosts', async () => {
     }
 });
 
+export const getPostsAdmin = createAsyncThunk('post/getPostsAdmin', async (query) => {
+    try {
+        const response = await post.getPostsLimitAdminApi();
+        if (response?.data?.err === 0) {
+            return response?.data;
+        } else {
+            return response?.data;
+        }
+    } catch (error) {
+        return null;
+    }
+});
+
 const postSlice = createSlice({
     name: 'post',
     initialState: {
@@ -46,13 +59,13 @@ const postSlice = createSlice({
         msg: '',
         count: 0,
         newPosts: [],
+        postOfCurrent: [],
+        dataEdit: {},
     },
     reducers: {
-        // getPosts(state, action) {
-        //     state.token = null;
-        //     state.msg = '';
-        //     state.isLoggedIn = false;
-        // },
+        editData(state, action) {
+            state.dataEdit = action.payload || {};
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -71,6 +84,7 @@ const postSlice = createSlice({
             .addCase(getPosts.rejected, (state, action) => {
                 state.posts = null;
             })
+
             .addCase(getPostsLimit.pending, (state) => {
                 // state.isLoggedIn = false;
             })
@@ -100,10 +114,26 @@ const postSlice = createSlice({
             })
             .addCase(getNewPosts.rejected, (state, action) => {
                 state.newPosts = null;
+            })
+
+            .addCase(getPostsAdmin.pending, (state) => {
+                // state.isLoggedIn = false;
+            })
+            .addCase(getPostsAdmin.fulfilled, (state, action) => {
+                if (action.payload?.err === 0) {
+                    state.postOfCurrent = action.payload.response?.rows || [];
+                    state.msg = action.payload?.msg || '';
+                    state.count = action.payload?.response?.count || 0;
+                } else {
+                    state.msg = action.payload?.msg;
+                }
+            })
+            .addCase(getPostsAdmin.rejected, (state, action) => {
+                state.posts = null;
             });
     },
 });
 
 const { actions, reducer } = postSlice;
-export const {} = actions;
+export const { editData } = actions;
 export default reducer;

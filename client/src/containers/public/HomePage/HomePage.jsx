@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAreas, getPrices } from '../../../app/slice/appSlice';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { RelatedPost, Search, SiderBarItem } from '../../../components';
 import { getNumber } from '../../../ultils/formatNumber';
 import List from '../List/List';

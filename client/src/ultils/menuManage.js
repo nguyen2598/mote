@@ -4,7 +4,7 @@ const menuManage = [
         id: 1,
         text: 'Đăng tin cho thuê',
         icon: <FcEditImage />,
-        path: '/he-thong/tao-moi-bai-dang',
+        path: '/he-thong/tao-moi-tin-dang',
     },
     {
         id: 2,

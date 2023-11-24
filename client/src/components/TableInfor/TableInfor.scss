@@ -1,0 +1,69 @@
+.table_infor {
+    width: 100%;
+    background-color: #febb02;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #febb02;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: #febb02;
+    & img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+    }
+    & h3 {
+        font-size: 21px;
+        margin: 15px 0;
+    }
+    & .phone {
+        font-weight: 700;
+        font-size: 1.5rem;
+        width: 100%;
+        border-color: #16c784;
+        background: linear-gradient(to right, #16c784, #16c784);
+        margin-bottom: 10px;
+        color: #fff;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        border-radius: 8px;
+        & i {
+            width: 20px;
+            height: 20px;
+            background: url(../../assests/phone.svg) center no-repeat;
+            background-size: contain;
+            display: inline-block;
+            margin-right: 5px;
+        }
+    }
+    & .zalo {
+        width: 100%;
+        height: 40px;
+        border-radius: 5px;
+        border: 1px solid #3961fb;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        cursor: pointer;
+        padding: 0 10px;
+        margin: 0;
+        border-color: #333;
+        background: linear-gradient(to right, #fff, #fff);
+        margin-bottom: 5px;
+        font-size: 18px;
+        font-weight: 700;
+        & i {
+            width: 25px;
+            height: 25px;
+            background: url(../../assests//zalo.png) center no-repeat;
+            background-size: contain;
+            display: inline-block;
+            margin-right: 5px;
+        }
+    }
+}

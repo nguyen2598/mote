@@ -12,7 +12,6 @@ axiosClient.interceptors.request.use(
         const token =
             localStorage.getItem('persist:auth') &&
             JSON.parse(window.localStorage.getItem('persist:auth'))?.token?.slice(1, -1);
-        // console.log('tokenq: ', token);
         // Do something before request is sent
         config.headers = {
             Authorization: `Bearer ${token}`,

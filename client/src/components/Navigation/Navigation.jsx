@@ -20,7 +20,7 @@ export default function Navigation({ isAdmin }) {
                     Trang chủ
                 </NavLink>
                 {categories?.map((item, index) => (
-                    <NavLink key={index} className="navigation-item" to={`${formatVietNamToString(item.value)}`}>
+                    <NavLink key={index} className="navigation-item" to={`/${formatVietNamToString(item.value)}`}>
                         {item.value}
                     </NavLink>
                 ))}

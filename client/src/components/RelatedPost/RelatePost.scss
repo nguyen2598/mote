@@ -1,0 +1,13 @@
+.related_post {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #dedede;
+    border-radius: 8px;
+    & h3 {
+        font-size: 18px;
+    }
+}
+.related_post_item {
+    margin: 12px 0;
+}

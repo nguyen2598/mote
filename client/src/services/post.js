@@ -11,8 +11,7 @@ const post = {
         }
     },
     async getPostsLimitApi(query) {
-        console.log('first1', query);
-        const url = `/api/post`;
+        const url = `/api/post/limit`;
         try {
             const response = await axiosClient.get(url, { params: query });
             return response;
@@ -24,6 +23,33 @@ const post = {
         const url = `/api/post/new-post`;
         try {
             const response = await axiosClient.get(url);
+            return response;
+        } catch (error) {
+            return error?.response;
+        }
+    },
+    async createPost(data) {
+        const url = `/api/post/create-post`;
+        try {
+            const response = await axiosClient.post(url, data);
+            return response;
+        } catch (error) {
+            return error;
+        }
+    },
+    async getPostsLimitAdminApi() {
+        const url = `/api/post/limit-admin`;
+        try {
+            const response = await axiosClient.get(url);
+            return response;
+        } catch (error) {
+            return error?.response;
+        }
+    },
+    async deletePost({ listId }) {
+        const url = `/api/post/delete-post`;
+        try {
+            const response = await axiosClient.post(url, listId);
             return response;
         } catch (error) {
             return error?.response;

@@ -40,7 +40,7 @@ export default function Search() {
     };
     const handleSearch = () => {
         const queryCode = Object.entries(queries)
-            .filter((item) => item[0].includes('Number'))
+            .filter((item) => item[0].includes('Number') || item[0].includes('Code'))
             .filter((item) => item[1]);
         let queryObject = {};
         queryCode.forEach((item) => {
@@ -57,7 +57,6 @@ export default function Search() {
         ${queryTextObj.price ? 'giá ' + queryTextObj.price + ' triệu' : ''} ${
             queryTextObj.area ? 'diện tích  ' + queryTextObj.area + 'm2' : ''
         }`.replace(/[\s\r?\n]+/g, ' ');
-        console.log(titleSearch);
         navigate(
             {
                 pathname: `/${path.SEARCH}`,
@@ -73,7 +72,7 @@ export default function Search() {
                     <SearchItem
                         name={name}
                         LeftIcon={<IcHome />}
-                        text={queries?.categorie?.length > 0 ? queries.categorie : 'Phòng trọ, nhà trọ'}
+                        text={queries?.category?.length > 0 ? queries.category : 'Phòng trọ, nhà trọ'}
                         RightIcon={<IcDelete />}
                     />
                 </div>
@@ -89,7 +88,7 @@ export default function Search() {
                     <SearchItem
                         name={name}
                         LeftIcon={<IcHome />}
-                        text={queries?.price?.length > 0 ? queries.price : 'Chọn giá'}
+                        text={queries?.price?.length > 0 ? queries.price + 'Triệu' : 'Chọn giá'}
                         RightIcon={<IcDelete />}
                     />
                 </div>
@@ -97,7 +96,7 @@ export default function Search() {
                     <SearchItem
                         name={name}
                         LeftIcon={<IcHome />}
-                        text={queries?.area?.length > 0 ? queries.area : 'Chọn diện tích'}
+                        text={queries?.area?.length > 0 ? queries.area + 'm2' : 'Chọn diện tích'}
                         RightIcon={<IcDelete />}
                     />
                 </div>

@@ -4,7 +4,7 @@ const menuSidebar = [
         id: 1,
         text: 'Đăng tin cho thuê',
         icon: <FcEditImage />,
-        path: '/he-thong/tao-moi-bai-dang',
+        path: '/he-thong/tao-moi-tin-dang',
     },
     {
         id: 2,
@@ -17,7 +17,7 @@ const menuSidebar = [
         id: 3,
         text: 'Sửa thông tin cá nhân ',
         icon: <FcInfo />,
-        path: '/he-thong/sua-thong-tin-ca-nhan',
+        path: '/he-thong/thong-tin-tai-khoan',
     },
     {
         id: 4,

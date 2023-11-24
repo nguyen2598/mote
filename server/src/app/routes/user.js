@@ -9,5 +9,6 @@ const verifyToken = require('../middleware/verifyToken');
 // router.post('/sendmail', authController.sendMail);
 // router.use(verifyToken); //  nếu token gửi về họp lệ mới chạy tiếp
 router.get('/get-current', verifyToken, userController.getCurrent);
+router.put('/update-user', verifyToken, userController.updateUser);
 
 module.exports = router;

@@ -9,4 +9,7 @@ export const path = {
     SEARCH: 'tim-kiem',
     SYSTEM: '/he-thong/*',
     CREATE_POST: 'tao-moi-tin-dang',
+    MANAGE_POST: 'quan-ly-bai-dang',
+    EDIT_ACCOUNT: 'thong-tin-tai-khoan',
+    DETAIL_ALL: 'chi-tiet/*',
 };

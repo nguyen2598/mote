@@ -16,3 +16,8 @@ export { default as Address } from './Address/Address';
 export { default as Overview } from './Overview/Overview';
 
 export { default as SelectAddress } from './SelectAddress/SelectAddress';
+export { default as Loading } from './Loading/Loading';
+export { default as UpdatePost } from './UpdatePost/UpdatePost';
+export { default as SliderCustom } from './SliderCustom/SliderCustom';
+export { default as TableInfor } from './TableInfor/TableInfor';
+export { default as GoToTop } from './GoToTop/GoToTop';

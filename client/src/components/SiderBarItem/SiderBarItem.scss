@@ -1,13 +1,15 @@
 .sider_bar_item {
-    padding: 16px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #dedede;
     border-radius: 8px;
-    width: 100%;
-    background-color: #f5f2f2;
 }
 
 .bar_item_h3 {
     font-size: 18px;
     font-weight: 700;
+    margin-bottom: 15px;
 }
 
 .bar_item_list {
@@ -21,6 +23,7 @@
     display: flex;
     align-items: center;
     gap: 4px;
+    margin-bottom: 8px;
 }
 
 .isDouble {

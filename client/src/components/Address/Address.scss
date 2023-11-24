@@ -1,0 +1,26 @@
+.address {
+    & h4 {
+        font-size: 16px;
+    }
+    margin: 24px 0;
+}
+.address_content {
+}
+.address_inp {
+    display: flex;
+    gap: 12px;
+}
+.address_text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    // & label {
+    //     font-weight: 600;
+    //     font-size: 12px;
+    // }
+    & input {
+        background-color: #efeded;
+        user-select: none;
+        padding: 8px 4px;
+    }
+}

@@ -13,7 +13,6 @@ class AuthController {
 
     async register(req, res, next) {
         const { name, password, phone } = req.body;
-        console.log({ name, password, phone });
         try {
             const response = await db.User.findOrCreate({
                 where: { phone: phone },
@@ -47,7 +46,6 @@ class AuthController {
 
     async login(req, res, next) {
         const { password, phone } = req.body;
-        console.log({ ...req.body });
         try {
             const user = await db.User.findOne({
                 where: { phone },

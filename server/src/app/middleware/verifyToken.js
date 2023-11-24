@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const verifyToken = (req, res, next) => {
-    let accessToken = req.headers.authorization.split(' ')[1];
-    console.log({ accessToken });
+    let accessToken = req.headers.authorization?.split(' ')[1];
     if (!accessToken) {
         return res.status(401).json({
             err: 1,
@@ -16,7 +15,6 @@ const verifyToken = (req, res, next) => {
                 });
             }
             // else {
-            console.log({ decodeUser });
             req.user = decodeUser;
             next();
             // }
