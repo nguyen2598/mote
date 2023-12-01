@@ -1,8 +1,8 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import 'moment/locale/vi';
-import { editData, getPostsAdmin } from '../../../app/slice/postSlice';
+import { editData, getPostsAdmin, getPostsAdminSearch } from '../../../app/slice/postSlice';
 import { UpdatePost } from '../../../components';
 import './ManagePsot.scss';
 import { BsTrash } from 'react-icons/bs';
@@ -10,6 +10,8 @@ import post from '../../../services/post';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
+import formatVietNamToString from '../../../ultils/formatVietNamToString';
 export default memo(function ManagePost() {
     const notify = (log, message) => toast?.[log](`${message}`);
     const dispatch = useDispatch();
@@ -20,6 +22,8 @@ export default memo(function ManagePost() {
     const [status, setStatus] = useState('0');
     const [dataPost, setDataPost] = useState([]);
     const [isDelete, setIsDelete] = useState(false);
+    const [searchValue, setSearchValue] = useState(null);
+    const typingRef = useRef(null);
     function compareISODateStrings(dateString1, dateString2) {
         // Chuyển đổi chuỗi ngày thành đối tượng Date
         const date1 = new Date(dateString1);
@@ -144,12 +148,21 @@ export default memo(function ManagePost() {
         let arrDate = date?.split('-');
         return `${arrDate[2]}/${arrDate[1]}/${arrDate[0]}`;
     };
+    const handleSearchChange = (e) => {
+        setSearchValue(e.target.value);
+        if (typingRef.current) {
+            clearTimeout(typingRef.current);
+        }
+        typingRef.current = setTimeout(() => {
+            dispatch(getPostsAdminSearch(e.target.value));
+        }, 600);
+    };
     return (
         <div className="manage_post">
             <ToastContainer />
             <div className="manage_post_header">
                 <h1 className="manage_post_search">
-                    <input type="text" placeholder="Nhập tin cần tìm" />
+                    <input type="text" placeholder="Nhập tin cần tìm" onChange={handleSearchChange} />
                 </h1>
                 <select
                     name=""
@@ -181,7 +194,7 @@ export default memo(function ManagePost() {
                         <th>Tiêu đề</th>
                         <th>Giá</th>
                         <th>Ngày tạo</th>
-                        <th>Trạng thái</th>
+                        {/* <th>Trạng thái</th> */}
                         <th>Tùy chọn</th>
                     </tr>
                 </thead>
@@ -212,16 +225,19 @@ export default memo(function ManagePost() {
                                         alt=""
                                     />
                                 </td>
-                                <td className="td_center">{item?.title}</td>
+                                <td className="td_center title">
+                                    <p>{item?.title}</p>
+                                </td>
                                 <td className="td_center">{item?.attributes?.price}</td>
                                 <td className="td_center">{converDate(item?.createdAt?.slice(0, 10))}</td>
-                                <td className="td_center">
+                                {/* <td className="td_center">
                                     {checkStatus(item?.overviews?.expired?.splice(' ')[3])
                                         ? 'Đang hoạt động'
                                         : 'Đã hết hạn'}
-                                </td>
+                                </td> */}
                                 <td className="td_center">
                                     <button
+                                        className="edit-button"
                                         onClick={() => {
                                             setIsEdit(true);
                                             dispatch(editData(item));
@@ -229,7 +245,9 @@ export default memo(function ManagePost() {
                                     >
                                         Sửa
                                     </button>
-                                    <button>Xóa</button>
+                                    <Link to={`/chi-tiet/${formatVietNamToString(item?.title)}/${item?.id}`}>
+                                        <button className="view-button">Xem</button>
+                                    </Link>
                                 </td>
                                 {/* <td>{new Date(item?.overviews?.expired?.splice(' ')[3])?.getTime()}</td> */}
                             </tr>

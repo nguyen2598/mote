@@ -45,7 +45,6 @@ class PostController {
     async getPostsLimit(req, res, next) {
         try {
             let { limit, page, priceNumber, order, areaNumber, ...query } = req.query;
-            console.log(1, { query });
             if (!limit) limit = 10;
             const queries = {
                 ...query,
@@ -242,7 +241,7 @@ class PostController {
                 priceNumber,
                 areaNumber,
             });
-            console.log(1);
+
             await db.Attribute.create({
                 id: attributesId,
                 price: `${
@@ -254,12 +253,10 @@ class PostController {
                 published: moment(new Date()).format('DD/MM/YYYY'),
                 hashtag: hashtag,
             });
-            console.log(2);
             await db.Image.create({
                 id: imagesId,
                 image: JSON.stringify(images),
             });
-            console.log(3);
             await db.Overview.create({
                 id: overviewId,
                 code: hashtag,
@@ -270,7 +267,6 @@ class PostController {
                 // createdAt: currentDate.today,
                 expiredAt: currentDate.expicreDay,
             });
-            console.log(4);
             await db.Province.findOrCreate({
                 where: {
                     [Op.or]: [{ value: province?.replace('Thành phố', '') }, { value: province?.replace('Tỉnh', '') }],
@@ -286,7 +282,6 @@ class PostController {
                         : province?.replace('Tỉnh', ''),
                 },
             });
-            console.log(5);
             await db.Label.findOrCreate({
                 where: {
                     code: labelCode,
@@ -296,7 +291,6 @@ class PostController {
                     value: label,
                 },
             });
-            console.log(6);
             return res.status(200).json({
                 err: 0,
                 msg: 'ok',
@@ -317,6 +311,66 @@ class PostController {
         try {
             const response = await db.Post.findAndCountAll({
                 where: { ...query, userId: id },
+                raw: true,
+                nest: true,
+                offset: offset * limit,
+                limit: +limit || 10,
+                order: [['createdAt', 'DESC']],
+                // limit: 5,
+                include: [
+                    {
+                        model: db.Image,
+                        as: 'images',
+                        attributes: ['image'],
+                    },
+                    {
+                        model: db.Attribute,
+                        as: 'attributes',
+
+                        attributes: ['price', 'acreage', 'published', 'hashtag'],
+                    },
+                    {
+                        model: db.User,
+                        as: 'user',
+                        attributes: ['name', 'phone', 'zalo', 'avatar'],
+                    },
+                    {
+                        model: db.Overview,
+                        as: 'overviews',
+                    },
+                ],
+                // attributes: ['id', 'title', 'star', 'address', 'description', 'createdAt'],
+            });
+            return res.status(200).json({
+                err: response ? 0 : 1,
+                msg: response ? 'OK' : 'failed to get post',
+                response,
+            });
+        } catch (error) {
+            return res.status(500).json({
+                err: -1,
+                msg: 'failed to get post' + error,
+            });
+        }
+    }
+    async getPostLimitAdminSearch(req, res, next) {
+        const { page, ...query } = req.query;
+        const { q } = query;
+        const { id } = req.user;
+        console.log({ page, query, id, q });
+        const limit = 10;
+        let offset = !page || +page <= 1 ? 0 : +page - 1;
+        try {
+            const response = await db.Post.findAndCountAll({
+                where: {
+                    [Op.or]: [
+                        { description: { [Op.like]: `%${q}%` } },
+                        { address: { [Op.like]: `%${q}%` } },
+                        { title: { [Op.like]: `%${q}%` } },
+                        // Các điều kiện khác nếu cần
+                    ],
+                    userId: id,
+                },
                 raw: true,
                 nest: true,
                 offset: offset * limit,
@@ -472,7 +526,6 @@ class PostController {
     }
     async deletePost(req, res, next) {
         const listId = req.body;
-        console.log(req.body);
         const { id } = req.user;
         try {
             const response = await db.Post.destroy({

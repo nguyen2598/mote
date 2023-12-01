@@ -7,6 +7,12 @@ tr {
 .td_center {
     text-align: center;
     vertical-align: middle;
+    & p {
+        text-align: left;
+    }
+    &.title {
+        max-width: 300px;
+    }
 }
 .table {
     width: 100%;
@@ -26,4 +32,28 @@ tr {
     padding: 4px 8px;
     border-radius: 12px;
     background-color: #fff;
+}
+
+.edit-button,
+.view-button {
+    padding: 4px 8px; /* Kích thước và độ dày của nút */
+    margin: 0 2px; /* Khoảng cách giữa các nút */
+    font-size: 16px; /* Cỡ chữ */
+    cursor: pointer;
+}
+
+.edit-button {
+    background-color: #3498db; /* Màu nền của nút Sửa */
+    color: #fff; /* Màu chữ của nút Sửa */
+}
+
+.view-button {
+    background-color: #2ecc71; /* Màu nền của nút Xem */
+    color: #fff; /* Màu chữ của nút Xem */
+}
+
+/* Hover effect */
+.edit-button:hover,
+.view-button:hover {
+    opacity: 0.8;
 }

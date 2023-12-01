@@ -18,6 +18,7 @@ router.get('/limit', postController.getPostsLimit);
 router.use(verifyToken);
 router.post('/create-post', postController.createNewPost);
 router.get('/limit-admin', postController.getPostLimitAdmin);
+router.get('/limit-admin-search', postController.getPostLimitAdminSearch);
 router.post('/delete-post', postController.deletePost);
 
 module.exports = router;

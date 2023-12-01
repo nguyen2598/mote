@@ -51,6 +51,18 @@ export const getPostsAdmin = createAsyncThunk('post/getPostsAdmin', async (query
         return null;
     }
 });
+export const getPostsAdminSearch = createAsyncThunk('post/getPostsAdminSearch', async (query) => {
+    try {
+        const response = await post.getPostsLimitAdminSearchApi(query);
+        if (response?.data?.err === 0) {
+            return response?.data;
+        } else {
+            return response?.data;
+        }
+    } catch (error) {
+        return null;
+    }
+});
 
 const postSlice = createSlice({
     name: 'post',
@@ -89,6 +101,7 @@ const postSlice = createSlice({
                 // state.isLoggedIn = false;
             })
             .addCase(getPostsLimit.fulfilled, (state, action) => {
+                console.log('co limit');
                 if (action.payload?.err === 0) {
                     state.posts = action.payload.response?.rows || [];
                     state.msg = action.payload?.msg || '';
@@ -129,6 +142,22 @@ const postSlice = createSlice({
                 }
             })
             .addCase(getPostsAdmin.rejected, (state, action) => {
+                state.posts = null;
+            })
+
+            .addCase(getPostsAdminSearch.pending, (state) => {
+                // state.isLoggedIn = false;
+            })
+            .addCase(getPostsAdminSearch.fulfilled, (state, action) => {
+                if (action.payload?.err === 0) {
+                    state.postOfCurrent = action.payload.response?.rows || [];
+                    state.msg = action.payload?.msg || '';
+                    state.count = action.payload?.response?.count || 0;
+                } else {
+                    state.msg = action.payload?.msg;
+                }
+            })
+            .addCase(getPostsAdminSearch.rejected, (state, action) => {
                 state.posts = null;
             });
     },

@@ -14,10 +14,11 @@ export default function DetalPost() {
     const dispatch = useDispatch();
     const { posts } = useSelector((state) => state.post);
     useEffect(() => {
+        console.log('co get dl');
         postId && dispatch(getPostsLimit({ id: postId }));
         window.scrollTo(0, 0);
     }, [postId]);
-
+    console.log({ posts: posts?.[0]?.description.slice(1, posts?.[0]?.description?.length - 1)?.split('\\n'), postId });
     return (
         <div className="detail_post">
             <div className="detail_post_left">
@@ -48,10 +49,13 @@ export default function DetalPost() {
 
                     <section className="detail_post_infor">
                         <h4>Thông tin mô tả</h4>
-                        {posts?.[0]?.description && Array.isArray(JSON.parse(posts?.[0]?.description))
+                        {posts?.length > 0 &&
+                        posts?.[0]?.description &&
+                        Array.isArray(JSON.parse(posts?.[0]?.description))
                             ? JSON.parse(posts?.[0]?.description)?.map((item, index) => <span key={index}>{item}</span>)
-                            : JSON.parse(posts?.[0]?.description)
-                                  ?.split(/[+\-*]/)
+                            : posts?.[0]?.description
+                                  .slice(1, posts?.[0]?.description?.length - 1)
+                                  ?.split('\\n')
                                   ?.map((item, index) => <span key={index}>{item}</span>)}
                     </section>
                     <section className="detail_post_overview">

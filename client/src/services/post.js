@@ -46,6 +46,15 @@ const post = {
             return error?.response;
         }
     },
+    async getPostsLimitAdminSearchApi(key) {
+        const url = `/api/post/limit-admin-search?q=${key}`;
+        try {
+            const response = await axiosClient.get(url);
+            return response;
+        } catch (error) {
+            return error?.response;
+        }
+    },
     async deletePost({ listId }) {
         const url = `/api/post/delete-post`;
         try {
